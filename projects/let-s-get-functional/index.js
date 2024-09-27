@@ -16,22 +16,65 @@ var _ = require('underbar');
  *
  * 4. To test your work, run the following command in your terminal:
  *
- *    npm start --prefix ./let-s-get-functional.github.io/projects/let-s-get-functional
+ *    npm start --prefix ./let-s-get-functional.github.io2/projects/let-s-get-functional
  *
  *    IMPORTANT: Make sure you replace <YOUR_GITHUB_FOLDER with your actual github folder name that is in your workspace.
  */
 
 var maleCount = function(array) {
-
+let males = _.filter(array, function(customer){
+    return customer.gender === "male";
+});
+return males.length;
 };
 
-var femaleCount;
+var femaleCount = function(array){
+    //declares females as the result of calling _.reduce to find the number of females
+let females = _.reduce(array, function(accumulator, current){
+    //if the current gender is female, add to the accumulator
+    if (current.gender === "female"){
+         accumulator++;
+    }
+    //return accumulator
+    return accumulator;
+}, 0);
+//return females
+    return females;
+};
 
-var oldestCustomer;
+var oldestCustomer = function(array){
+    let oldest = _.reduce(array, function(accumulator, current){
+        if (current.age > accumulator.age){
+            return current;
+        }
+        return accumulator;
+    });
+    return oldest.name;
+};
 
-var youngestCustomer;
+var youngestCustomer = function(array){
+    //declare youngest as the result of invoking _.reduce in order to determine the youngest customer
+    let youngest = _.reduce(array, function(accumulator, current){
+        if (current.age < accumulator.age){
+            return current;
+        }
+        return accumulator;
+    });
+    return youngest.name;
+};
 
-var averageBalance;
+var averageBalance = function(array){
+    //declare average as t he result of invoking _.reduce in order to find the average balance of customers
+    let average = _.reduce(array, function(accumulator, current){
+        //declare currentString as the result of removing all dollar signs and commas from the current balance string
+        let currentString = current.balance.replaceAll(/[$,]/g, "");
+        //declare currentNumber as the result of converting currentString into a number
+        let currentNumber = Number(currentString);
+        //return the result of adding accumulator and currentNumber together and then dividing it by the array's length
+        return accumulator + currentNumber / array.length;
+    }, 0);
+    return average;
+};
 
 var firstLetterCount;
 
