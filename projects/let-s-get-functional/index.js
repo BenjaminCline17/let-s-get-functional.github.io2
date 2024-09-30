@@ -76,9 +76,24 @@ var averageBalance = function(array){
     return average;
 };
 
-var firstLetterCount;
+var firstLetterCount = function(array, letter){
+    //declare first as the result of invoking _.filter in order to find the number of customers that begins with the input letter
+    let first = _.filter(array, function(customer){
+        return customer.name[0].toUpperCase() === letter.toUpperCase();
+    })
+    return first.length; //return the length of first
+};
 
-var friendFirstLetterCount;
+var friendFirstLetterCount = function(array, customer, letter){
+    //declare friendFirst as the result of invoking _.filter in order to determine if the customer in the array matches the input customer
+    let friendFirst = _.filter(array, function(arrCustomer){
+        return arrCustomer.name === customer;
+    });
+    let result = _.filter(friendFirst.friends, function(friend){
+        return friend.name[0].toUpperCase() === letter.toUpperCase();
+    });
+    return result.length;
+};
 
 var friendsCount;
 
