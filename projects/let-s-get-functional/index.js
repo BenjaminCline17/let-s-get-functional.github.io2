@@ -88,14 +88,25 @@ var friendFirstLetterCount = function(array, customer, letter){
     //declare friendFirst as the result of invoking _.filter in order to determine if the customer in the array matches the input customer
     let friendFirst = _.filter(array, function(arrCustomer){
         return arrCustomer.name === customer;
-    });
-    let result = _.filter(friendFirst.friends, function(friend){
+    })[0];
+    //declare output as the result of invoking _.filter to determine if the current friend's name begins with the input letter
+    let output = _.filter(friendFirst.friends, function(friend){
         return friend.name[0].toUpperCase() === letter.toUpperCase();
     });
-    return result.length;
+    return output.length; //return output.length
 };
 
-var friendsCount;
+var friendsCount = function(array, name){
+    //let customer equal the result of invoking _.reduce to determine who is friends with the input name
+    let customer = _.reduce(array, function(accumulator, current){
+        //if the current name matches the input name, push the current name into the accumulator array
+        if(current.name === name){
+            accumulator.push(current.name);
+        }
+        return accumulator; //return accumulator
+    }, []);
+    return customer; //return customer
+};
 
 var topThreeTags;
 
