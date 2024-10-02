@@ -107,7 +107,25 @@ var friendsCount = function(array, name){
     } return output;
 };
 
-var topThreeTags;
+var topThreeTags = function(array){
+      //declare topTags as an empty object
+      let topTags = {};
+
+      //use a for loop to iterate through the array
+      for (let i = 0; i < array.length; i++){
+          //use a for of loop to iterate through the tags array
+          for (let tag of array[i].tags){
+              //count the amount of times a tag shows up in the tags array
+              topTags[tag] = (topTags[tag] || 0) + 1;
+          }
+          
+      }
+      //let output equal the frequency of the tags in descending order
+      let output = Object.entries(topTags).sort((a, b) => b[1] - a[1]);
+  
+      //return output as the top three most frequent tags
+      return output.slice(0, 3).map(([tag]) => tag)
+};
 
 var genderCount;
 
