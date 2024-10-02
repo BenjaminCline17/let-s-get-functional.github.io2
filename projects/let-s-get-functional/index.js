@@ -97,15 +97,14 @@ var friendFirstLetterCount = function(array, customer, letter){
 };
 
 var friendsCount = function(array, name){
-    //let customer equal the result of invoking _.reduce to determine who is friends with the input name
-    let customer = _.reduce(array, function(accumulator, current){
-        //if the current name matches the input name, push the current name into the accumulator array
-        if(current.name === name){
-            accumulator.push(current.name);
+    let output = [];
+    for (let i = 0; i < array.length; i++){
+        for (let j = 0; j < array[i].friends.length; j++){
+            if (array[i].friends[j].name === name){
+                output.push(array[i].name);
+            }
         }
-        return accumulator; //return accumulator
-    }, []);
-    return customer; //return customer
+    } return output;
 };
 
 var topThreeTags;
