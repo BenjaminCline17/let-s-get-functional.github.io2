@@ -127,7 +127,22 @@ var topThreeTags = function(array){
       return output.slice(0, 3).map(([tag]) => tag)
 };
 
-var genderCount;
+var genderCount = function(array){
+    //declare count as the result of invoking _.reduce to determine the number of each gender
+    let count = _.reduce(array, function(accumulator, current){
+        //if the current gender is male, add 1 to male
+        if (current.gender === "male"){
+            accumulator.male++;
+            //if current gender is female, add 1 to female
+        } else if (current.gender === "female"){
+            accumulator.female++
+        } else { //if current gender is non-gbinary, add 1 to non-binary
+            accumulator["non-binary"]++;
+        }
+        return accumulator; //return accumulator
+    }, {male: 0, female: 0, "non-binary": 0})
+    return count; //return count
+};
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////
